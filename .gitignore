@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+.env
+
+# Node / front-end
+node_modules/
+dist/
+build/
+
+# VSCode
+.vscode/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# OneDrive / sync temp
+~$*
+*.lnk

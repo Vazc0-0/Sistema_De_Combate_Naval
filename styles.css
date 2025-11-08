@@ -1,0 +1,621 @@
+/* CSS traduzido para pt-BR — variáveis e comentários em português */
+/* ...full CSS extracted from original index.html ... */
+:root {
+    --marinha-escura: #0a1929;      /* navy-dark */
+    --marinha-azul: #132f4c;        /* navy-blue */
+    --marinha-clara: #1e4976;       /* navy-light */
+    --dourado: #ffd700;             /* gold */
+    --prata: #c0c0c0;               /* silver */
+    --vermelho-alerta: #ff4444;     /* alert-red */
+    --azul-amigo: #4444ff;          /* friendly-blue */
+    --laranja-alerta: #ffaa00;      /* warning-orange */
+    --brilho-tela: #00ff9d;         /* screen-glow */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+}
+
+body {
+    background-color: var(--marinha-escura);
+    color: var(--prata);
+    overflow: hidden;
+    height: 100vh;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(19, 47, 76, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(30, 73, 118, 0.3) 0%, transparent 50%);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    height: 100vh;
+    padding: 10px;
+    gap: 10px;
+}
+
+/* Estação principal */
+.battle-station {
+    display: grid;
+    grid-template-rows: 80px 1fr 200px;
+    gap: 10px;
+}
+
+/* Cabeçalho */
+.header {
+    background: linear-gradient(to right, var(--marinha-azul), var(--marinha-escura));
+    border: 1px solid var(--marinha-clara);
+    border-radius: 5px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, var(--dourado) 30%, transparent 70%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--dourado);
+    font-weight: bold;
+    color: var(--marinha-escura);
+}
+
+.logo-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--dourado);
+}
+
+.status-bar {
+    display: flex;
+    gap: 20px;
+}
+
+.status-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.status-label {
+    font-size: 0.7rem;
+    color: var(--prata);
+}
+
+.status-value {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--brilho-tela);
+}
+
+/* Seção do radar */
+.radar-section {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 10px;
+}
+
+.radar-container {
+    background-color: rgba(10, 25, 41, 0.8);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7);
+}
+
+.radar-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: radial-gradient(circle, transparent 70%, rgba(0, 20, 30, 0.9) 100%);
+}
+
+.radar-sweep {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 50% 0%);
+    background: conic-gradient(transparent 340deg, rgba(0, 255, 157, 0.3) 360deg);
+    animation: radarRotation 4s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes radarRotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.radar-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle, transparent 10%, rgba(0, 255, 157, 0.1) 10%, transparent 20%),
+        radial-gradient(circle, transparent 20%, rgba(0, 255, 157, 0.1) 20%, transparent 30%),
+        radial-gradient(circle, transparent 30%, rgba(0, 255, 157, 0.1) 30%, transparent 40%),
+        radial-gradient(circle, transparent 40%, rgba(0, 255, 157, 0.1) 40%, transparent 50%),
+        radial-gradient(circle, transparent 50%, rgba(0, 255, 157, 0.1) 50%, transparent 60%),
+        radial-gradient(circle, transparent 60%, rgba(0, 255, 157, 0.1) 60%, transparent 70%),
+        radial-gradient(circle, transparent 70%, rgba(0, 255, 157, 0.1) 70%, transparent 80%);
+    opacity: 0.5;
+}
+
+.radar-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--brilho-tela);
+    border-radius: 50%;
+}
+
+.radar-axis {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 255, 157, 0.5), transparent);
+}
+
+.radar-axis.horizontal {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0, 255, 157, 0.5), transparent);
+}
+
+.contact {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite;
+}
+
+.contact.enemy {
+    background-color: var(--vermelho-alerta);
+    box-shadow: 0 0 10px var(--vermelho-alerta);
+}
+
+.contact.friendly {
+    background-color: var(--azul-amigo);
+    box-shadow: 0 0 10px var(--azul-amigo);
+}
+
+.contact.unknown {
+    background-color: var(--laranja-alerta);
+    box-shadow: 0 0 10px var(--laranja-alerta);
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+}
+
+.contact-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 0.7rem;
+    background-color: rgba(10, 25, 41, 0.8);
+    padding: 2px 6px;
+    border-radius: 3px;
+    white-space: nowrap;
+    color: var(--prata);
+}
+
+.radar-info {
+    background-color: rgba(10, 25, 41, 0.8);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 5px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-panel {
+    background-color: rgba(19, 47, 76, 0.5);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.info-title {
+    font-size: 0.9rem;
+    color: var(--dourado);
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--marinha-clara);
+    padding-bottom: 5px;
+}
+
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.contact-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.contact-item.enemy {
+    border-left: 3px solid var(--vermelho-alerta);
+}
+
+.contact-item.friendly {
+    border-left: 3px solid var(--azul-amigo);
+}
+
+/* Seção Console */
+.console-section {
+    background-color: rgba(10, 25, 41, 0.8);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 5px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.console-output {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 3px;
+    padding: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: var(--brilho-tela);
+    overflow-y: auto;
+    margin-bottom: 10px;
+    height: 150px;
+}
+
+.console-input {
+    display: flex;
+    gap: 10px;
+}
+
+.console-input input {
+    flex: 1;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 3px;
+    color: var(--brilho-tela);
+    font-family: 'Courier New', monospace;
+}
+
+.console-input button {
+    padding: 8px 15px;
+    background-color: var(--marinha-azul);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 3px;
+    color: var(--prata);
+}
+
+/* Painel lateral */
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.weapons-panel {
+    background-color: rgba(10, 25, 41, 0.8);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 5px;
+    padding: 15px;
+    flex: 1;
+}
+
+.weapon-system {
+    margin-bottom: 15px;
+}
+
+.weapon-title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.weapon-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.status-online {
+    background-color: var(--brilho-tela);
+    box-shadow: 0 0 5px var(--brilho-tela);
+}
+
+.status-offline {
+    background-color: var(--vermelho-alerta);
+}
+
+.weapon-controls {
+    display: flex;
+    gap: 5px;
+    margin-top: 8px;
+}
+
+.weapon-btn {
+    flex: 1;
+    padding: 5px;
+    background-color: var(--marinha-azul);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 3px;
+    color: var(--prata);
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.weapon-btn.armed {
+    background-color: var(--vermelho-alerta);
+    color: white;
+}
+
+.weapon-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Painel de criptografia */
+.crypto-panel {
+    background-color: rgba(10, 25, 41, 0.8);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 5px;
+    padding: 15px;
+    flex: 1;
+}
+
+.crypto-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.crypto-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.crypto-input-group label {
+    font-size: 0.8rem;
+    color: var(--prata);
+}
+
+.crypto-input-group textarea {
+    height: 60px;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 3px;
+    color: var(--brilho-tela);
+    font-family: 'Courier New', monospace;
+    resize: none;
+}
+
+.crypto-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.crypto-btn {
+    flex: 1;
+    padding: 8px;
+    background-color: var(--marinha-azul);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 3px;
+    color: var(--prata);
+    cursor: pointer;
+    text-align: center;
+}
+
+.crypto-btn.primary {
+    background-color: var(--dourado);
+    color: var(--marinha-escura);
+    font-weight: bold;
+}
+
+/* Estilos de alerta */
+.alert-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--vermelho-alerta);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    z-index: 100;
+    animation: alertFlash 1s infinite;
+    display: none;
+}
+
+@keyframes alertFlash {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Tela de login */
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.login-box {
+    background: linear-gradient(to bottom, var(--marinha-azul), var(--marinha-escura));
+    border: 2px solid var(--dourado);
+    border-radius: 5px;
+    padding: 30px;
+    width: 400px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--dourado);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--prata);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 3px;
+    color: white;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--dourado);
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--marinha-azul);
+    color: white;
+    border: 1px solid var(--dourado);
+    border-radius: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background-color: var(--marinha-clara);
+}
+
+.btn-gold {
+    background-color: var(--dourado);
+    color: var(--marinha-escura);
+    font-weight: bold;
+}
+
+.two-factor {
+    margin-top: 20px;
+    text-align: center;
+    display: none;
+}
+
+/* Controles de som */
+.sound-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+}
+
+.sound-btn {
+    padding: 8px 15px;
+    background-color: var(--marinha-azul);
+    border: 1px solid var(--marinha-clara);
+    border-radius: 3px;
+    color: var(--prata);
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+/* Utilitários */
+.hidden {
+    display: none;
+}
+
+.text-glow {
+    text-shadow: 0 0 5px currentColor;
+}
+
+.message-alert {
+    color: var(--vermelho-alerta);
+    font-weight: bold;
+}
+
+.message-warning {
+    color: var(--laranja-alerta);
+}
+
+.message-info {
+    color: var(--brilho-tela);
+}
+
+.message-encrypted {
+    color: var(--dourado);
+    font-style: italic;
+}
